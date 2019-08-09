@@ -32,7 +32,7 @@ class SmartWall(Dataset):
     def __getitem__(self, index):
 
         single_data = torch.cuda.FloatTensor(self.data_raw[index]['data'])
-
+        print('single_data:',single_data.shape)
         single_label = self.data_raw[index]['label']
 
         return (single_data, single_label)

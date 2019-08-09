@@ -159,8 +159,8 @@ if __name__=='__main__':
     in_channels=1
     kernel_size=args.kernel_size
     dropout=args.dropout
-    out_features=10
-    sequence_length=28*28 # 28*28 is the size of pictures in MNIST dataset
+    out_features=2 # Smart Wall features
+    sequence_length=10*400 # 10*400 is the size of pictures in SmartWall dataset
     # model
     m=create_model(num_channels,in_channels,kernel_size,dropout,out_features)
     m=move_model_to_cuda(args,m)

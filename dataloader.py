@@ -28,7 +28,7 @@ class SmartWall(Dataset):
                     print(self.label.shape)
                     print(np.expand_dims(data_raw[j]['label'],axis=0).shape)
                     self.data=np.concatenate((self.data,np.expand_dims(data_raw[j]['data'],axis=0)),axis=0)
-                    self.label=np.concatenate((self.label,data_raw[j]['label']),axis=0) 
+                    self.label=np.concatenate((self.label,np.expand_dims(data_raw[j]['label']),axis=0),axis=0) 
         print('type data dim 1 ',type(self.data[0]))
         print('type data dim 3',type(self.data[0][0][0]))
         self.data = self.data

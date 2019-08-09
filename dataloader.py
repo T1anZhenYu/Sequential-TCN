@@ -1,5 +1,4 @@
 import torch
-from torchvision import datasets,transforms
 from torch.utils.data.dataset import Dataset
 import os 
 class SmartWall(Dataset):
@@ -40,10 +39,11 @@ def data_loader(batch_size):
     train_root='./train'
     test_root='./test'
     train_loader=torch.utils.data.DataLoader(
-        datasets.SmartWall(train_root),
+        Dataset.SmartWall(train_root),
         batch_size=batch_size,
         shuffle=True)
-    test_loader=torch.utils.data.DataLoader(test_root,
+    test_loader=torch.utils.data.DataLoader(
+        Dataset.SmartWall(test_root),
         batch_size=batch_size,
         shuffle=True
     )

@@ -25,6 +25,7 @@ class SmartWall(Dataset):
                 self.data.append(data_raw[j]['data'])
                 self.label.append(data_raw[j]['label'])
         print('len data',len(self.data))
+        print('len data dim 1 ',len(self.data[0]))
         self.data = torch.Tensor(self.data)
         self.data_len=len(self.data)
 

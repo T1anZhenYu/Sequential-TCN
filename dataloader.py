@@ -22,6 +22,8 @@ class SmartWall(Dataset):
             try:
                 self.data=np.concatenate((self.data,np.expand_dims(data_raw[j]['data'],axis=0)),axis=0)
                 self.label=np.concatenate((self.label,np.expand_dims(data_raw[j]['label'],axis=0)),axis=0)
+                if j % 100 ==0:
+                    print('loding'+data_path+':',j)
             except ValueError :
                 print('read_data\n',data_raw[j]['data'])               
 

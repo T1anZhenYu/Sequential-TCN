@@ -20,11 +20,12 @@ class SmartWall(Dataset):
         self.label = np.array([])
         for i in range(len(file_list)):
             data_raw = dict(np.load(data_path+'/'+file_list[i],allow_pickle=True))['arr_0']
-            for j in range(len(data_raw)):   
-                print(self.data.shape)
-                print(np.expand_dims(data_raw[j]['data'],axis=0).shape)
-                self.data=np.concatenate((self.data,np.expand_dims(data_raw[j]['data'],axis=0)),axis=0)
-                self.label=np.concatenate((self.label,data_raw[j]['label']),axis=0) 
+            for j in range(len(data_raw)): 
+                if i == 0 and j == 0:
+                    self.data=  np.expand_dims(data_raw[j]['data'],axis=0)
+                else:
+                    self.data=np.concatenate((self.data,np.expand_dims(data_raw[j]['data'],axis=0)),axis=0)
+                    self.label=np.concatenate((self.label,data_raw[j]['label']),axis=0) 
         print('type data dim 1 ',type(self.data[0]))
         print('type data dim 3',type(self.data[0][0][0]))
         self.data = self.data

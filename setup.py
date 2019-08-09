@@ -63,6 +63,7 @@ def train(args,model,train_loader,optimizer,criterion,
     model.train()
     train_loss=0
     print('train_loader:\n',train_loader)
+    print(len(train_loader))
     for batch_idx,data in enumerate(train_loader):
         inputs,targets=data
         if args.cuda:

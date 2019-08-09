@@ -10,27 +10,20 @@ class SmartWall(Dataset):
             img_path (string): path to the folder where images are
             transform: pytorch transforms for transforms and tensor conversion
         """
-        # Transforms
-        #修改当前工作目录
-        os.chdir(data_path)
-        #将该文件夹下的所有文件名存入一个列表
-        file_list = os.listdir()
 
         self.data = np.array([[[]]])
         self.label = np.array([])
-        for i in range(len(file_list)):
-            data_raw = dict(np.load(data_path+'/'+file_list[i],allow_pickle=True))['arr_0']
-            for j in range(len(data_raw)): 
-                if i == 0 and j == 0:
-                    self.data=  np.expand_dims(data_raw[j]['data'],axis=0)
-                    self.label = np.expand_dims(data_raw[j]['label'],axis=0)
-                else:
 
-                    try:
-                        self.data=np.concatenate((self.data,np.expand_dims(data_raw[j]['data'],axis=0)),axis=0)
-                        self.label=np.concatenate((self.label,np.expand_dims(data_raw[j]['label'],axis=0)),axis=0)
-                    except ValueError :
-                        print('read_data\n',data_raw[j]['data'])               
+        data_raw = dict(np.load(data_path,allow_pickle=True))['arr_0']
+        print(type(data_raw))
+        self.data=  np.expand_dims(data_raw[0]['data'],axis=0)
+        self.label = np.expand_dims(data_raw[0]['label'],axis=0)
+        for j in range(len(data_raw)): 
+            try:
+                self.data=np.concatenate((self.data,np.expand_dims(data_raw[j]['data'],axis=0)),axis=0)
+                self.label=np.concatenate((self.label,np.expand_dims(data_raw[j]['label'],axis=0)),axis=0)
+            except ValueError :
+                print('read_data\n',data_raw[j]['data'])               
 
         self.data = self.data
 

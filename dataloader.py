@@ -16,13 +16,13 @@ class SmartWall(Dataset):
         #将该文件夹下的所有文件名存入一个列表
         file_list = os.listdir()
 
-        self.data = np.array([])
+        self.data = np.array([[[]]])
         self.label = np.array([])
         for i in range(len(file_list)):
             data_raw = dict(np.load(data_path+'/'+file_list[i],allow_pickle=True))['arr_0']
             for j in range(len(data_raw)):   
    
-                self.data=np.concatenate((self.data,data_raw[j]['data']),axis=0)
+                self.data=np.concatenate((self.data,np.expand_dims(data_raw[j]['data']),axis=0),axis=0)
                 self.label=np.concatenate((self.label,data_raw[j]['label']),axis=0) 
         print('type data dim 1 ',type(self.data[0]))
         print('type data dim 3',type(self.data[0][0][0]))

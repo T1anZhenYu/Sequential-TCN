@@ -19,7 +19,7 @@ class SmartWall(Dataset):
         self.data = []
         self.label = []
         for i in range(len(file_list)):
-            data_raw = dict(np.load(data_path+'/'+file_list[i]))
+            data_raw = dict(np.load(data_path+'/'+file_list[i],allow_pickle=True))
             for j in range(data_raw):
                 self.data.append(data_raw[j]['data'])
                 self.label.append(data_raw[j]['label'])

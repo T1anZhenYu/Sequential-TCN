@@ -29,16 +29,11 @@ class SmartWall(Dataset):
                     try:
                         self.data=np.concatenate((self.data,np.expand_dims(data_raw[j]['data'],axis=0)),axis=0)
                         self.label=np.concatenate((self.label,np.expand_dims(data_raw[j]['label'],axis=0)),axis=0)
-                    except:
-                        print(i)
-                        print(j)
-                        print(self.data.shape)
-                        print(np.expand_dims(data_raw[j]['data'],axis=0).shape)
-                        print(data_raw[j]['data'])                    
-        print('type data dim 1 ',type(self.data[0]))
-        print('type data dim 3',type(self.data[0][0][0]))
+                    except ValueError :
+                        print('read_data\n',data_raw[j]['data'])               
+
         self.data = self.data
-        print('type data',type(self.data))
+
         self.data_len=len(self.data)
 
     def __getitem__(self, index):
@@ -53,8 +48,8 @@ class SmartWall(Dataset):
         return self.data_len
 
 def data_loader(batch_size):
-    train_root='/content/train'
-    test_root='/content/test'
+    train_root='/content/drive/My Drive/smart_wall_data/train'
+    test_root='/content/drive/My Drive/smart_wall_data/test'
     train_dataset=SmartWall(train_root)
     test_dataset=SmartWall(test_root)
     train_loader=torch.utils.data.DataLoader(

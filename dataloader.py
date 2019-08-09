@@ -26,7 +26,7 @@ class SmartWall(Dataset):
                 self.label.append(data_raw[j]['label'])
         print('type data',type(self.data))
         print('type data dim 1 ',type(self.data[0]))
-        print('type data dim 2',type(self.data[0][0]))
+        print('type data dim 3',type(self.data[0][0][0]))
         self.data = np.array(self.data)
         self.data_len=len(self.data)
 

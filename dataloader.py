@@ -22,8 +22,9 @@ class SmartWall(Dataset):
             data_raw = dict(np.load(data_path+'/'+file_list[i],allow_pickle=True))['arr_0']
             for j in range(len(data_raw)):   
 
-                self.data.append(torch.from_numpy(np.array(data_raw[j]['data'])))
+                self.data.append(data_raw[j]['data'])
                 self.label.append(data_raw[j]['label'])
+        self.data = torch.Tensor(self.data)
         self.data_len=len(self.data)
 
     def __getitem__(self, index):

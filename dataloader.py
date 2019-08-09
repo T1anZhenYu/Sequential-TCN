@@ -1,6 +1,7 @@
 import torch
 from torch.utils.data.dataset import Dataset
 import os 
+import numpy as np 
 class SmartWall(Dataset):
     def __init__(self, data_path):
         """

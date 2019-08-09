@@ -23,6 +23,7 @@ class SmartWall(Dataset):
             for j in range(len(data_raw)): 
                 if i == 0 and j == 0:
                     self.data=  np.expand_dims(data_raw[j]['data'],axis=0)
+                    self.label = data_raw[j]['label']
                 else:
                     print(self.label.shape)
                     print(np.expand_dims(data_raw[j]['label'],axis=0).shape)

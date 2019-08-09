@@ -41,8 +41,8 @@ class SmartWall(Dataset):
         return self.data_len
 
 def data_loader(batch_size):
-    train_root='/content/drive/My Drive/smart_wall_data/train'
-    test_root='/content/drive/My Drive/smart_wall_data/test'
+    train_root='/content/drive/My Drive/smart_wall_data/train.npz'
+    test_root='/content/drive/My Drive/smart_wall_data/test.npz'
     train_dataset=SmartWall(train_root)
     test_dataset=SmartWall(test_root)
     train_loader=torch.utils.data.DataLoader(

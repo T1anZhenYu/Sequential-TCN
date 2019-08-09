@@ -11,10 +11,7 @@ class SmartWall(Dataset):
             transform: pytorch transforms for transforms and tensor conversion
         """
 
-        self.data = np.array([[[]]])
-        self.label = np.array([])
-
-        data_raw = dict(np.load(data_path,allow_pickle=True))['arr_0']
+        self.data_raw = dict(np.load(data_path,allow_pickle=True))['arr_0']
         '''
         print(data_raw.shape)
         self.data=  np.expand_dims(data_raw[0]['data'],axis=0)

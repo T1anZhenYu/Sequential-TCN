@@ -15,7 +15,8 @@ class SmartWall(Dataset):
         self.label = np.array([])
 
         data_raw = dict(np.load(data_path,allow_pickle=True))['arr_0']
-        print(type(data_raw))
+        '''
+        print(data_raw.shape)
         self.data=  np.expand_dims(data_raw[0]['data'],axis=0)
         self.label = np.expand_dims(data_raw[0]['label'],axis=0)
         for j in range(len(data_raw)): 
@@ -28,14 +29,14 @@ class SmartWall(Dataset):
                 print('read_data\n',data_raw[j]['data'])               
 
         self.data = self.data
-
-        self.data_len=len(self.data)
+        '''
+        self.data_len=len(self.data_raw)
 
     def __getitem__(self, index):
         # Get image name from the pandas df
-        single_data = self.data[index]
+        single_data = self.data_raw[index]['data']
         # Open image
-        singlelabel = self.label[index]
+        singlelabel = self.data_raw[index]['label']
 
         return (single_data, singlelabel)
 

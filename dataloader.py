@@ -33,12 +33,12 @@ class SmartWall(Dataset):
         self.data_len=len(self.data_raw)
 
     def __getitem__(self, index):
-        # Get image name from the pandas df
-        single_data = self.data_raw[index]['data']
-        # Open image
-        singlelabel = self.data_raw[index]['label']
 
-        return (single_data, singlelabel)
+        single_data = self.data_raw[index]['data']
+
+        single_label = self.data_raw[index]['label']
+
+        return (single_data, single_label)
 
     def __len__(self):
         return self.data_len

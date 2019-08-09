@@ -34,7 +34,7 @@ class SmartWall(Dataset):
                         print(j)
                         print(self.data.shape)
                         print(np.expand_dims(data_raw[j]['data'],axis=0).shape)
-                        print(data_raw[j]['data'],axis=0)                    
+                        print(data_raw[j]['data'])                    
         print('type data dim 1 ',type(self.data[0]))
         print('type data dim 3',type(self.data[0][0][0]))
         self.data = self.data

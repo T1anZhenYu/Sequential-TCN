@@ -67,6 +67,7 @@ def train(args,model,train_loader,optimizer,criterion,
     for batch_idx,data in enumerate(train_loader):
         print('inside')
         inputs,targets=data
+        
         if args.cuda:
             inputs,targets=inputs.cuda(),targets.cuda()
         inputs=inputs.view(-1,in_channels,sequence_length)

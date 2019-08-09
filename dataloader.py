@@ -31,9 +31,17 @@ class SmartWall(Dataset):
 
     def __getitem__(self, index):
 
-        single_data = torch.unsqueeze(torch.cuda.FloatTensor(self.data_raw[index]['data']),-1)
-        print('single_data:',single_data.shape)
-        single_label = self.data_raw[index]['label']
+        temp = torch.unsqueeze(torch.cuda.FloatTensor(self.data_raw[index]['data']),-1)
+        if temp.shape[0]==0:
+            inedx += 1
+            while torch.unsqueeze(torch.cuda.FloatTensor(self.data_raw[index]['data']),-1).shape == 0:
+                inedx += 1
+            single_data = torch.unsqueeze(torch.cuda.FloatTensor(self.data_raw[index]['data']),-1)
+            single_label = self.data_raw[index]['label']
+        else:
+            single_data = temp
+            single_label = self.data_raw[index]['label']           
+
 
         return (single_data, single_label)
 
